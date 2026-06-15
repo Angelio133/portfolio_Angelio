@@ -1,0 +1,265 @@
+@use "./_variables.scss" as *;
+
+// --- PALETTE CYBER-TECH ---
+$cyber-cyan: #00f0ff;
+$cyber-blue: #0044ff;
+$cyber-green: #00ff66;
+$cyber-dark-card: rgba(8, 8, 18, 0.9);
+
+.gauge-skills-section {
+  padding: 120px 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+// --- TITRE DU DASHBOARD ---
+.gauge-header {
+  text-align: center;
+  margin-bottom: 5rem;
+
+  .gauge-tag-top {
+    font-family: monospace;
+    color: $cyber-cyan;
+    letter-spacing: 4px;
+    font-size: 0.85rem;
+    text-shadow: 0 0 10px rgba($cyber-cyan, 0.4);
+    font-weight: 700;
+  }
+
+  .gauge-main-title {
+    font-size: 4rem;
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: -1px;
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+  }
+}
+
+// --- GRILLE COMPACTE ---
+.gauge-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+// --- BOÎTIERS HUD ---
+.gauge-card {
+  position: relative;
+  background: $cyber-dark-card;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+  padding: 3rem 2.5rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  .card-header-block {
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 1rem;
+  }
+
+  .card-serial {
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  .card-group-title {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+  }
+}
+
+// --- ALIGNEMENT DES JAUGES ---
+.gauges-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.gauge-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+
+  .gauge-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .gauge-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.85);
+      letter-spacing: 0.5px;
+    }
+  }
+}
+
+// --- CONTENEUR DE LA BARRE ---
+.gauge-bar-container {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+// --- LE REMPLISSAGE DE LA JAUGE ---
+.gauge-progress-fill {
+  height: 100%;
+  width: var(--progress);
+  position: relative;
+  background: rgba(255, 255, 255, 0.2);
+  transition: all 0.4s ease;
+
+  .gauge-laser-tip {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 4px;
+    background: #ffffff;
+    box-shadow: 0 0 10px #ffffff;
+  }
+}
+
+// --- EFFETS STATIQUES HUD ---
+.card-scanline {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(255, 255, 255, 0.02) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+}
+
+.card-hud-corners {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  span {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border: 1.5px solid transparent;
+    opacity: 0.2;
+    transition: all 0.3s ease;
+  }
+  span:nth-child(1) {
+    top: 10px;
+    left: 10px;
+    border-right: none;
+    border-bottom: none;
+  }
+  span:nth-child(2) {
+    top: 10px;
+    right: 10px;
+    border-left: none;
+    border-bottom: none;
+  }
+  span:nth-child(3) {
+    bottom: 10px;
+    left: 10px;
+    border-right: none;
+    border-top: none;
+  }
+  span:nth-child(4) {
+    bottom: 10px;
+    right: 10px;
+    border-left: none;
+    border-top: none;
+  }
+}
+
+// --- THEME SURCHOC DE COULEURS AU HOVER ---
+
+.theme-cyan {
+  &:hover {
+    border-color: rgba($cyber-cyan, 0.3);
+    box-shadow: 0 20px 40px rgba($cyber-cyan, 0.1);
+    .card-group-title {
+      color: $cyber-cyan;
+    }
+    .card-hud-corners span {
+      border-color: $cyber-cyan;
+      opacity: 1;
+    }
+    .gauge-progress-fill {
+      background: linear-gradient(90deg, rgba($cyber-cyan, 0.3), $cyber-cyan);
+      .gauge-laser-tip {
+        background: $cyber-cyan;
+        box-shadow:
+          0 0 10px $cyber-cyan,
+          0 0 20px $cyber-cyan;
+      }
+    }
+  }
+}
+
+.theme-electric-blue {
+  &:hover {
+    border-color: rgba($cyber-blue, 0.5);
+    box-shadow: 0 20px 40px rgba($cyber-blue, 0.2);
+    .card-group-title {
+      color: $cyber-blue;
+    }
+    .card-hud-corners span {
+      border-color: $cyber-blue;
+      opacity: 1;
+    }
+    .gauge-progress-fill {
+      background: linear-gradient(90deg, rgba($cyber-blue, 0.3), $cyber-blue);
+      .gauge-laser-tip {
+        background: #ffffff;
+        box-shadow:
+          0 0 10px $cyber-blue,
+          0 0 20px $cyber-blue;
+      }
+    }
+  }
+}
+
+.theme-green-neon {
+  &:hover {
+    border-color: rgba($cyber-green, 0.4);
+    box-shadow: 0 20px 40px rgba($cyber-green, 0.15);
+    .card-group-title {
+      color: $cyber-green;
+    }
+    .card-hud-corners span {
+      border-color: $cyber-green;
+      opacity: 1;
+    }
+    .gauge-progress-fill {
+      background: linear-gradient(90deg, rgba($cyber-green, 0.3), $cyber-green);
+      .gauge-laser-tip {
+        background: $cyber-green;
+        box-shadow:
+          0 0 10px $cyber-green,
+          0 0 20px $cyber-green;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .gauge-header .gauge-main-title {
+    font-size: 2.5rem;
+  }
+  .gauge-card {
+    padding: 2rem 1.5rem;
+  }
+}

@@ -1,0 +1,125 @@
+@use "./variables";
+
+/* ==========================================================================
+   BRUTAL PROJECTS SECTION
+   ========================================================================== */
+
+.brutal-projects-section {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  .section-title-block {
+    margin-bottom: 40px;
+
+    .brutal-main-title {
+      font-size: 2.5rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      margin: 0;
+    }
+  }
+}
+
+/* Grille des cartes */
+.brutal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+/* La Carte Projet */
+.brutal-project-card {
+  background: #1b025f;
+  border: 3px solid #007697;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  // Style de l'en-tête (ID et Catégorie)
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: monospace;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+
+    .project-number {
+      font-weight: bold;
+    }
+
+    .project-category {
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+  }
+
+  // Corps de la carte (Titre et Description)
+  .card-body {
+    flex-grow: 1;
+
+    .project-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin: 0 0 10px 0;
+      text-transform: uppercase;
+    }
+
+    .project-desc {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: #ffffff;
+      margin: 0;
+    }
+  }
+
+  // Bas de la carte (Technos et Liens)
+  .card-footer {
+    margin-top: 20px;
+    border-top: 2px solid #c28585;
+    padding-top: 15px;
+
+    .tech-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 15px;
+
+      .tech-item {
+        font-family: monospace;
+        font-size: 0.8rem;
+
+        padding: 2px 6px;
+        border: 1px solid #000873;
+        font-weight: bold;
+      }
+    }
+
+    // Zone du lien unique [LIVE_DEMO]
+    .project-links {
+      display: flex;
+      justify-content: flex-end; /* Aligne le bouton à droite */
+
+      .brutal-icon-link {
+        color: #ff8b8b;
+        text-decoration: none;
+        font-family: monospace;
+        font-weight: bold;
+        font-size: 1rem;
+        transition: transform 0.1s ease;
+
+        span {
+          display: inline-block;
+        }
+
+        &:hover {
+          text-decoration: underline;
+          transform: scale(1.05); /* Léger effet de pop au survol */
+        }
+      }
+    }
+  }
+}

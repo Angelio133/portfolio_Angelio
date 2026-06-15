@@ -1,0 +1,148 @@
+@use './_variables.scss' as *;
+
+.hero-premium {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 140px !important;
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 4rem;
+    align-items: center;
+    width: 100%;
+  }
+
+  .hero-text-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-subtitle-top {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: $accent;
+    text-shadow: $neon-glow;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-name {
+    font-size: 5rem;
+    font-weight: 900;
+    letter-spacing: -3px;
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(180deg, #ffffff 30%, #555566 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero-lead {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: $text-muted;
+    margin-bottom: 3rem;
+  }
+
+  .hero-actions {
+    display: block;
+  }
+
+  .action-link {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #030305;
+    background: $accent;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    box-shadow: $neon-glow;
+    transition: $transition;
+    display: inline-block;
+
+    &:hover {
+      background: #ffffff;
+      box-shadow: 0 0 40px rgba(255, 255, 255, 0.5);
+      transform: translateY(-3px);
+    }
+  }
+
+  .hero-image-block {
+    width: 100%;
+    perspective: 1000px; // Permet l'effet de profondeur 3D au survol
+  }
+
+  // Cadre Photo Effet Hologramme / Studio 3D
+  .photo-wrapper {
+    width: 100%;
+    height: 520px;
+    border-radius: $radius;
+    overflow: hidden;
+    position: relative;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba($accent, 0.2);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba($accent, 0.05);
+    transition: $transition;
+    transform-style: preserve-3d;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: $radius;
+      padding: 2px; 
+      background: linear-gradient(135deg, $accent, transparent, $accent-blue);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top; // Recentre le cadre sur ton visage
+      transform: scale(1.02);
+      transition: $transition;
+    }
+
+    &:hover {
+      transform: translateY(-10px) rotateX(6deg) rotateY(-6deg); // Inclinaison cinématique
+      border-color: $accent;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.9), 0 0 50px rgba($accent, 0.2);
+      
+      img { 
+        transform: scale(1.05); 
+      }
+    }
+  }
+}
+
+@media (max-width: 968px) {
+  .hero-premium {
+    padding-top: 100px !important;
+    
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      text-align: center;
+    }
+    
+    .hero-text-block {
+      align-items: center;
+    }
+    
+    .hero-name {
+      font-size: 3.5rem;
+    }
+    
+    .photo-wrapper {
+      height: 420px;
+    }
+  }
+}

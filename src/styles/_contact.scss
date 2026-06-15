@@ -1,0 +1,195 @@
+@use "./variables" as *;
+
+// --- VARIABLES DÉJÀ ALIGNÉES SUR TON THÈME ---
+$cl-sky: #38bdf8;
+$cl-bg-dark: #0f172a;
+$cl-border: rgba(56, 189, 248, 0.3);
+$cl-border-hover: #38bdf8;
+
+.brutal-contact-section {
+  padding: 80px 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+// --- CONTENEUR PRINCIPAL EN DEUX BLOCS CRUS ---
+.contact-container {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr; // Formulaire plus large que le bloc d'icônes
+  gap: 3rem;
+  align-items: start;
+}
+
+// ==========================================
+// 1. BLOC FORMULAIRE NÉO-BRUTALISTE
+// ==========================================
+.contact-form-box {
+  background: rgba(15, 23, 42, 0.4);
+  border: 2px solid $cl-border; // La fameuse grosse bordure structurelle
+  padding: 3rem;
+  transition: border-color 0.3s ease;
+
+  &:hover {
+    border-color: $cl-border-hover;
+  }
+
+  .contact-title {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #ffffff;
+    margin-bottom: 2.5rem;
+    letter-spacing: -0.5px;
+  }
+}
+
+// --- STRUCTURE DU FORMULAIRE ---
+.brutal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+
+    label {
+      font-family: monospace;
+      font-size: 0.85rem;
+      font-weight: bold;
+      color: $cl-sky;
+      letter-spacing: 1px;
+    }
+
+    input,
+    textarea {
+      background: rgba(15, 23, 42, 0.6);
+      border: 2px solid $cl-border;
+      padding: 1rem;
+      color: #ffffff;
+      font-family: sans-serif;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.2);
+      }
+
+      &:focus {
+        outline: none;
+        border-color: $cl-sky;
+        background: rgba(15, 23, 42, 0.9);
+        box-shadow: 0 0 10px rgba(56, 189, 248, 0.15);
+      }
+    }
+
+    textarea {
+      resize: vertical; // Permet de redimensionner uniquement en hauteur
+    }
+  }
+
+  // --- BOUTON D'ENVOI CARRÉ ---
+  .brutal-btn-submit {
+    background: transparent;
+    border: 2px solid $cl-sky;
+    color: $cl-sky;
+    padding: 1.2rem;
+    font-family: monospace;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 1rem;
+
+    &:hover {
+      background: $cl-sky;
+      color: $cl-bg-dark; // Le texte s'inverse avec le fond au survol
+      box-shadow: 0 5px 15px rgba(56, 189, 248, 0.3);
+    }
+  }
+}
+
+// ==========================================
+// 2. BLOC LIENS SOCIAUX (LOGOS JPG)
+// ==========================================
+.contact-info-box {
+  background: rgba(15, 23, 42, 0.4);
+  border: 2px solid $cl-border;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  transition: border-color 0.3s ease;
+
+  &:hover {
+    border-color: $cl-border-hover;
+  }
+
+  .contact-subtitle {
+    font-family: monospace;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #ffffff;
+  }
+}
+
+// --- GRILLAGE COMPACT POUR LES LOGOS SANS TEXTE ---
+.social-brutal-icons-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    3,
+    1fr
+  ); // 3 colonnes fixes pour aligner les logos côte à côte
+  gap: 1.5rem;
+
+  .social-icon-card {
+    border: 2px solid $cl-border;
+    background: rgba(15, 23, 42, 0.6);
+    aspect-ratio: 1 / 1; // Crée des carrés parfaits pour les icônes
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: $cl-border-hover;
+      background: rgba(56, 189, 248, 0.05);
+      transform: scale(1.05);
+    }
+
+    // --- MISE EN FORME CHIRURGICALE DE VOS JPG ---
+    .social-jpg-icon {
+      width: 38px; // Taille optimale de l'icône dans le carré
+      height: 38px;
+      object-fit: contain; // Évite d'écraser le logo si le ratio du fichier change
+      filter: grayscale(20%); // Harmonise l'affichage global
+      transition: filter 0.2s ease;
+    }
+
+    &:hover .social-jpg-icon {
+      filter: grayscale(0%); // Le logo retrouve sa couleur vive au survol
+    }
+  }
+}
+
+// ==========================================
+// 3. RESPONSIVE POUR ÉCRANS MOBILES
+// ==========================================
+@media (max-width: 968px) {
+  .contact-container {
+    grid-template-columns: 1fr; // Tout bascule sur une seule colonne verticale
+    gap: 2rem;
+  }
+
+  .contact-form-box,
+  .contact-info-box {
+    padding: 2rem 1.5rem; // Réduction des espacements internes
+  }
+
+  .social-brutal-icons-grid {
+    grid-template-columns: repeat(
+      3,
+      1fr
+    ); // Maintien de l'alignement sur mobile
+  }
+}

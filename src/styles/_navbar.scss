@@ -1,0 +1,63 @@
+@use "./variables" as *;
+
+// --- PALETTE DE COULEURS LIÉE À TON THÈME ---
+$cl-sky: #38bdf8;
+$cl-border: rgba(138, 211, 243, 0.3);
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; // Pour être sûr qu'elle reste au-dessus de tout
+
+  // --- LE SECRET DU FLOU CYBER-MINIMALISTE ---
+  background: rgba(
+    15,
+    23,
+    42,
+    0.6
+  ); // Fond très légèrement sombre et transparent
+  backdrop-filter: blur(12px); // Floute le contenu qui passe derrière
+  -webkit-backdrop-filter: blur(12px); // Compatibilité Safari
+
+  // --- TA BORDURE STRUCTURELLE EN BAS ---
+  border-bottom: 2px solid $cl-border;
+
+  // Ajustement de l'alignement interne
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 3rem;
+  transition: border-color 0.3s ease;
+
+  &:hover {
+    border-color: $cl-sky; // La bordure s'illumine proprement au survol
+  }
+}
+
+// Style rapide pour tes liens de navigation à l'intérieur
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+
+  a {
+    font-family: monospace;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.7);
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: $cl-sky; // Éclat bleu ciel au survol
+    }
+  }
+}
+
+// Responsive ajusté
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem 1.5rem;
+  }
+}
